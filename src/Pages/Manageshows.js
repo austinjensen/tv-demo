@@ -1,7 +1,15 @@
 import React, { Component } from 'react'
 import Show from '../Show'
+import ReactPropTypes from 'prop-types'
+import { Link } from 'react-router-dom';
+
 
 export default class Manageshows extends Component {
+    static ReactPropTypes = {
+        createShow: ReactPropTypes.func.isRequired
+    }
+
+
     state = {
         show: {
             name: '',
@@ -9,11 +17,7 @@ export default class Manageshows extends Component {
             image: ''
         },
         shows: [
-            {
-                name: 'walkingdead',
-                rating: 3,
-                image: 'https://pbs.twimg.com/profile_images/956941358219931649/2rsLjOg-_400x400.jpg'
-            }
+
         ]
 
     }
@@ -33,23 +37,23 @@ export default class Manageshows extends Component {
             })
     }
     handleOnClick = () => {
-        this.setState((previousState) => {
-            const existingShows = previousState.shows
-            existingShows.push({
-                name: previousState.newShowName,
-                rating: previousState.newShowRating,
-                image: previousState.newPreviewImage
-            })
-            return {
-                shows: existingShows
-            }
-
+        this.props.createShow({
+            name: this.state.newShowName,
+            rating: this.state.newShowRating,
+            image: this.state.newPreviewImage
         })
     }
     renderShows = () => {
 
+        return this.props.allshows.map((show, i) => {
+            return (
+                <Show key={i} name={show.name} rating={show.rating} image={show.image} />
+            )
+
+        })
+
         // const showComponents = [
-            // <Show key={1} name={this.state.shows[1].name} rating={this.state.shows[1].rating} image={this.state.shows[1].image} />
+        // <Show key={1} name={this.state.shows[1].name} rating={this.state.shows[1].rating} image={this.state.shows[1].image} />
         // ]
         // for (const show of this.state.shows) {
         //     showComponents.push(
@@ -67,22 +71,16 @@ export default class Manageshows extends Component {
         // }
 
         // return showComponents
-        return this.state.shows.map((show, i) => {
-            return(
-                <Show key={i} name={show.name} rating={show.rating} image={show.image}/>
-            )
-
-        })
-
     }
     render() {
         return (
-            <div>
+            <div className="manageshows">
                 <section className="viewallshows">
                     <header><h1>All Shows</h1></header>
                     <div>
                         {this.renderShows()}
                     </div>
+                    <Link to="/"> View Shows</Link>
                 </section>
 
                 <section className="createshow">
@@ -100,3 +98,10 @@ export default class Manageshows extends Component {
     }
 }
 //e=event value=string-always
+
+
+
+
+
+
+

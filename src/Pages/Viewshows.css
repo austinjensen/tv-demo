@@ -1,0 +1,9 @@
+.viewshows{
+    background-color: rgb(0, 255, 213);
+}
+.availableshows{
+    background-color: lime;
+}
+.currentshows{
+    background-color: orange;
+}

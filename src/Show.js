@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactPropTypes from 'prop-types'
+import './Show.css'
 
 export default class Show extends Component{
     static propTypes = {
@@ -10,9 +11,9 @@ export default class Show extends Component{
     }
     render(){
         return(
-            <article>
+            <article >
                 <header><h3>{this.props.name}</h3></header>
-                <p>{this.props.rating}</p>
+                <p>rating-{this.props.rating}</p>
                 <img src={this.props.image} alt='unknown'/>
 
             </article>

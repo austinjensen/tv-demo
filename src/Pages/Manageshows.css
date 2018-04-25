@@ -1,0 +1,13 @@
+.manageshows{
+    background-color: pink;
+    display: flex;
+    flex-direction: row;
+
+}
+.viewallshows {
+    width: 30vw;
+    background-color: aqua;
+}
+.createshow {
+    background-color: yellow;
+}
